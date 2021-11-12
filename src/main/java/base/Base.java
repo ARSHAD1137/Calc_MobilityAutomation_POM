@@ -11,25 +11,20 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class Base {
-    public static WebDriver driver;
+    public static AndroidDriver driver;
 
     @BeforeTest
     public void setup() throws MalformedURLException {
         DesiredCapabilities cap = new DesiredCapabilities();
 
-        cap.setCapability("deviceName", "emulator-5554");
+        cap.setCapability("deviceName", "SM G570F");
+        cap.setCapability("udid","42000995e440a3d9");
         cap.setCapability("platformName", "Android");
-        cap.setCapability("platformVersion", "8.0");
-        cap.setCapability("appPackage", "com.android.calculator2");
-        cap.setCapability("appActivity", "com.android.calculator2.Calculator");
-        cap.setCapability("automationName","UiAutomator2");
-        cap.setCapability("uiautomator2ServerLaunchTimeout",100000);
-        cap.setCapability("adbExecTimeout",90000);
-        cap.setCapability("newCommandTimeout", 120);
-        cap.setCapability(AndroidMobileCapabilityType.ADB_EXEC_TIMEOUT, 60000);
-        cap.setCapability("androidInstallTimeout", 180000);
+        cap.setCapability("platformVersion", "8.0.0");
+        cap.setCapability("appPackage", "com.sec.android.app.popupcalculator");
+        cap.setCapability("appActivity", "com.sec.android.app.popupcalculator.Calculator");
 
-        driver=new RemoteWebDriver(new URL("http://0.0.0.0:4723/wd/hub"),cap);
+        driver=new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"),cap);
     }
 
 }

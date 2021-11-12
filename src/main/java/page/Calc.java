@@ -11,29 +11,29 @@ import org.openqa.selenium.support.PageFactory;
 
 public class Calc extends Base {
 
-    //private AndroidDriver<AndroidElement> driver;
+    private AndroidDriver<AndroidElement> driver;
 
-    public Calc(WebDriver driver) {
+    public Calc(AndroidDriver driver) {
         this.driver = driver;
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
-    @AndroidFindBy(id = "com.android.calculator2:id/digit_7")
+    @AndroidFindBy(id = "com.sec.android.app.popupcalculator:id/bt_07")
     private MobileElement btn1;
 
-    @AndroidFindBy(id = "com.android.calculator2:id/digit_8")
+    @AndroidFindBy(id = "com.sec.android.app.popupcalculator:id/bt_05")
     private MobileElement btn2;
 
-    @AndroidFindBy(id = "com.android.calculator2:id/op_add")
+    @AndroidFindBy(id = "com.sec.android.app.popupcalculator:id/bt_add")
     private MobileElement plusBtn;
 
-    @AndroidFindBy(id = "com.android.calculator2:id/op_sub")
+    @AndroidFindBy(id = "com.sec.android.app.popupcalculator:id/bt_sub")
     private MobileElement subtrBtn;
 
-    @AndroidFindBy(id = "com.android.calculator2:id/op_mul")
+    @AndroidFindBy(id = "com.sec.android.app.popupcalculator:id/bt_mul")
     private MobileElement multiBtn;
 
-    @AndroidFindBy(id = "com.android.calculator2:id/eq")
+    @AndroidFindBy(id = "com.sec.android.app.popupcalculator:id/bt_equal")
     private MobileElement eqlBtn;
 
     public void add() {
