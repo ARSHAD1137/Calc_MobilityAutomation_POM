@@ -3,10 +3,17 @@ package test;
 import base.BaseCalc;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.testng.Assert;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 import page.CalcPage;
+
+import java.io.File;
+import java.io.IOException;
 
 public class CalcTest extends BaseCalc {
 
@@ -22,7 +29,7 @@ public class CalcTest extends BaseCalc {
 
         test1.log(Status.PASS, "Successfully pass addition test");
 
-        String actualResult = driver.findElement(By.id("com.sec.android.app.popupcalculator:id/txtCalc_RealTimeResult")).getText();
+        String actualResult = driver.findElement(By.id("com.sec.android.app.popupcalculator:id/txtCalc")).getText();
         Thread.sleep(2000);
         Assert.assertEquals(actualResult,"12");
     }
@@ -37,7 +44,7 @@ public class CalcTest extends BaseCalc {
 
         test2.log(Status.PASS, "Successfully pass subtraction test");
 
-        String actualResult = driver.findElement(By.id("com.sec.android.app.popupcalculator:id/txtCalc_RealTimeResult")).getText();
+        String actualResult = driver.findElement(By.id("com.sec.android.app.popupcalculator:id/txtCalc")).getText();
         Thread.sleep(2000);
         Assert.assertEquals(actualResult,"2");
     }
@@ -52,8 +59,14 @@ public class CalcTest extends BaseCalc {
 
         test3.log(Status.PASS, "Successfully pass multiplication test");
 
-        String actualResult = driver.findElement(By.id("com.sec.android.app.popupcalculator:id/txtCalc_RealTimeResult")).getText();
+        String actualResult = driver.findElement(By.id("com.sec.android.app.popupcalculator:id/txtCalc")).getText();
         Thread.sleep(2000);
         Assert.assertEquals(actualResult,"35");
+    }
+
+    @AfterTest
+    public void take_screenshot() throws IOException {
+        File file  = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(file, new File("C:\\Users\\Arshad\\Desktop\\Custom Batch QA\\Screenshots\\screenshot.jpg"));
     }
 }
