@@ -12,7 +12,7 @@ public class ExtentReportCalc{
 
     @BeforeSuite
     public void reportSetup() {
-        htmlCalcReporter = new ExtentHtmlReporter("extent.html");
+        htmlCalcReporter = new ExtentHtmlReporter("C:\\Users\\Arshad\\IdeaProjects\\Calc_MobilityAutomation_POM\\extentReport\\extent.html");
         extent = new ExtentReports();
         extent.attachReporter(htmlCalcReporter);
     }
