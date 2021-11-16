@@ -32,8 +32,14 @@ public class CalcPage extends BaseCalc {
     @AndroidFindBy(id = "com.sec.android.app.popupcalculator:id/bt_mul")
     private MobileElement multiBtn;
 
+    @AndroidFindBy(id = "com.sec.android.app.popupcalculator:id/bt_div")
+    private MobileElement divisBtn;
+
     @AndroidFindBy(id = "com.sec.android.app.popupcalculator:id/bt_equal")
     private MobileElement eqlBtn;
+
+    @AndroidFindBy(id = "com.sec.android.app.popupcalculator:id/bt_clear")
+    private MobileElement clrBtn;
 
     public void addition() {
         btn1.click();
@@ -42,17 +48,28 @@ public class CalcPage extends BaseCalc {
         eqlBtn.click();
     }
 
-    public void multi() {
+    public void multi()  {
         btn1.click();
         multiBtn.click();
         btn2.click();
         eqlBtn.click();
     }
 
-    public void subtr(){
+    public void subtr() {
         btn1.click();
         subtrBtn.click();
         btn2.click();
         eqlBtn.click();
+    }
+
+    public void divis() {
+        btn1.click();
+        divisBtn.click();
+        btn2.click();
+        eqlBtn.click();
+    }
+
+    public void clr(){
+        clrBtn.click();
     }
 }

@@ -17,6 +17,9 @@ import page.CalcPage;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class CalcTest extends BaseCalc {
 
@@ -37,6 +40,7 @@ public class CalcTest extends BaseCalc {
         String actualResult = driver.findElement(By.id("com.sec.android.app.popupcalculator:id/txtCalc")).getText();
         Thread.sleep(2000);
         Assert.assertEquals(actualResult,"12");
+        cal.clr();
     }
 
     @Test(priority = 2)
@@ -54,6 +58,7 @@ public class CalcTest extends BaseCalc {
         String actualResult = driver.findElement(By.id("com.sec.android.app.popupcalculator:id/txtCalc")).getText();
         Thread.sleep(2000);
         Assert.assertEquals(actualResult,"2");
+        cal.clr();
     }
 
     @Test(priority = 3)
@@ -71,11 +76,32 @@ public class CalcTest extends BaseCalc {
         String actualResult = driver.findElement(By.id("com.sec.android.app.popupcalculator:id/txtCalc")).getText();
         Thread.sleep(2000);
         Assert.assertEquals(actualResult,"35");
+        cal.clr();
+    }
+
+    @Test(priority = 4)
+    public void division() throws InterruptedException {
+        CalcPage cal = new CalcPage(driver);
+        ExtentTest test4 = extent.createTest("Division of two number");
+        test4.log(Status.INFO, "Start division of two number");
+        Log.info("Division test is started");
+
+        cal.divis();
+
+        Log.info("Division test is completed");
+        test4.log(Status.PASS, "Successfully pass division test");
+
+        String actualResult = driver.findElement(By.id("com.sec.android.app.popupcalculator:id/txtCalc")).getText();
+        Thread.sleep(2000);
+        Assert.assertEquals(actualResult,"1.4");
     }
 
     @AfterTest
     public void take_screenshot() throws IOException {
+        DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy h-m-s");
+        Date date = new Date();
+
         File file  = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(file, new File("C:\\Users\\Arshad\\IdeaProjects\\Calc_MobilityAutomation_POM\\screenshots\\screenshot.jpg"));
+        FileUtils.copyFile(file, new File("C:\\Users\\Arshad\\IdeaProjects\\Calc_MobilityAutomation_POM\\screenshots\\"+dateFormat.format(date)+"screenshot.png"));
     }
 }
