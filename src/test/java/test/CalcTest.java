@@ -14,6 +14,9 @@ import page.CalcPage;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class CalcTest extends BaseCalc {
 
@@ -66,7 +69,10 @@ public class CalcTest extends BaseCalc {
 
     @AfterTest
     public void take_screenshot() throws IOException {
+        DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy h-m-s");
+        Date date = new Date();
+
         File file  = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(file, new File("C:\\Users\\Arshad\\Desktop\\Custom Batch QA\\Screenshots\\screenshot.jpg"));
+        FileUtils.copyFile(file, new File("C:\\Users\\Arshad\\Desktop\\Custom Batch QA\\Screenshots\\"+dateFormat.format(date)+"screenshot.png"));
     }
 }
