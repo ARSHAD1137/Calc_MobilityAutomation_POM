@@ -3,24 +3,13 @@ package test;
 import base.BaseCalc;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
-import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 import page.CalcPage;
 
-import java.io.File;
-import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class CalcTest extends BaseCalc {
-
-
 
     @Test(priority = 1)
     public void additionOperation() throws InterruptedException {
@@ -35,6 +24,7 @@ public class CalcTest extends BaseCalc {
         String actualResult = driver.findElement(By.id("com.sec.android.app.popupcalculator:id/txtCalc")).getText();
         Thread.sleep(2000);
         Assert.assertEquals(actualResult,"12");
+        cal.clr();
     }
 
     @Test(priority = 2)
@@ -50,6 +40,7 @@ public class CalcTest extends BaseCalc {
         String actualResult = driver.findElement(By.id("com.sec.android.app.popupcalculator:id/txtCalc")).getText();
         Thread.sleep(2000);
         Assert.assertEquals(actualResult,"2");
+        cal.clr();
     }
 
     @Test(priority = 3)
@@ -65,14 +56,21 @@ public class CalcTest extends BaseCalc {
         String actualResult = driver.findElement(By.id("com.sec.android.app.popupcalculator:id/txtCalc")).getText();
         Thread.sleep(2000);
         Assert.assertEquals(actualResult,"35");
+        cal.clr();
     }
 
-    @AfterTest
-    public void take_screenshot() throws IOException {
-        DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy h-m-s");
-        Date date = new Date();
+    @Test(priority = 4)
+    public void division() throws InterruptedException {
+        CalcPage cal = new CalcPage(driver);
+        ExtentTest test3 = extent.createTest("Division of two numbers");
+        test3.log(Status.INFO, "Start division of two numbers");
 
-        File file  = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(file, new File("C:\\Users\\Arshad\\Desktop\\Custom Batch QA\\Screenshots\\"+dateFormat.format(date)+"screenshot.png"));
+        cal.divis();
+
+        test3.log(Status.PASS, "Successfully pass division test");
+
+        String actualResult = driver.findElement(By.id("com.sec.android.app.popupcalculator:id/txtCalc")).getText();
+        Thread.sleep(2000);
+        Assert.assertEquals(actualResult,"1.4");
     }
 }

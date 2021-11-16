@@ -1,12 +1,21 @@
 package base;
 
 import io.appium.java_client.android.AndroidDriver;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import test.ExtentReportCalc;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class BaseCalc extends ExtentReportCalc {
     public static AndroidDriver driver;
@@ -23,6 +32,15 @@ public class BaseCalc extends ExtentReportCalc {
         cap.setCapability("appActivity", "com.sec.android.app.popupcalculator.Calculator");
 
         driver=new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"),cap);
+    }
+
+    @AfterTest
+    public void take_screenshot() throws IOException {
+        DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy h-m-s");
+        Date date = new Date();
+
+        File file  = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(file, new File("C:\\Users\\Arshad\\Desktop\\Custom Batch QA\\Screenshots\\"+dateFormat.format(date)+"screenshot.png"));
     }
 
 }
