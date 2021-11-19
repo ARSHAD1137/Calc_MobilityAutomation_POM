@@ -40,7 +40,7 @@ public class BaseCalc extends ExtentReportCalc {
         Date date = new Date();
 
         File file  = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(file, new File("C:\\Users\\Arshad\\Desktop\\Custom Batch QA\\Screenshots\\"+dateFormat.format(date)+"screenshot.png"));
+        FileUtils.copyFile(file, new File("C:\\Users\\Arshad\\IdeaProjects\\Calc_MobilityAutomation_POM\\screenshots\\"+dateFormat.format(date)+"screenshot.png"));
     }
 
 }

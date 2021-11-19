@@ -6,7 +6,9 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 public class CalcPage extends BaseCalc {
 
@@ -41,32 +43,48 @@ public class CalcPage extends BaseCalc {
     @AndroidFindBy(id = "com.sec.android.app.popupcalculator:id/bt_clear")
     private MobileElement clrBtn;
 
-    public void addition() {
+    public void addition() throws InterruptedException {
         btn1.click();
         plusBtn.click();
         btn2.click();
         eqlBtn.click();
+
+        String actualResult = driver.findElement(By.id("com.sec.android.app.popupcalculator:id/txtCalc")).getText();
+        Thread.sleep(2000);
+        Assert.assertEquals(actualResult,"12");
     }
 
-    public void multi()  {
+    public void multi() throws InterruptedException {
         btn1.click();
         multiBtn.click();
         btn2.click();
         eqlBtn.click();
+
+        String actualResult = driver.findElement(By.id("com.sec.android.app.popupcalculator:id/txtCalc")).getText();
+        Thread.sleep(2000);
+        Assert.assertEquals(actualResult,"35");
     }
 
-    public void subtr() {
+    public void subtr() throws InterruptedException {
         btn1.click();
         subtrBtn.click();
         btn2.click();
         eqlBtn.click();
+
+        String actualResult = driver.findElement(By.id("com.sec.android.app.popupcalculator:id/txtCalc")).getText();
+        Thread.sleep(2000);
+        Assert.assertEquals(actualResult,"2");
     }
 
-    public void divis() {
+    public void divis() throws InterruptedException {
         btn1.click();
         divisBtn.click();
         btn2.click();
         eqlBtn.click();
+
+        String actualResult = driver.findElement(By.id("com.sec.android.app.popupcalculator:id/txtCalc")).getText();
+        Thread.sleep(2000);
+        Assert.assertEquals(actualResult,"1.4");
     }
 
     public void clr(){
